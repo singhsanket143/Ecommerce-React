@@ -39,7 +39,9 @@ function Header(props) {
                 <DropdownItem>Cart</DropdownItem>
                 <DropdownItem>Settings</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>Logout</DropdownItem>
+                <DropdownItem>
+                  <Link to="/signin">Logout</Link>
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
             <NavbarText>Username</NavbarText>
