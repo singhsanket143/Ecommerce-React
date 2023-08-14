@@ -10,8 +10,8 @@
 }
 
 
-.category-list {
-    margin-top: 3rem;
+#category-list {
+    margin-top: 5rem;
     gap: 1rem;
 }
 
@@ -39,3 +39,6 @@
     transition: box-shadow 0.15s linear 0s;
 }
 
+.welcome-wrapper {
+    margin-top: 5rem;
+}

@@ -1,7 +1,10 @@
+// CSS imports
 import './App.css'
+
+// Custom components
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
-import Home from './pages/Home/Home'
+import MainRoutes from './routes/MainRoutes'
 function App() {
 
   return (
@@ -14,7 +17,7 @@ function App() {
         container="md"
       />
 
-      <Home />
+      <MainRoutes />
 
       {/* Common footer for all pages */}
       <Footer />
