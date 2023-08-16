@@ -42,6 +42,7 @@ function ProductList() {
 
                         {productList && productList.map(
                             (product) => <ProductBox 
+                                            productId={product.id}
                                             key={product.id} 
                                             name={product.title}
                                             price={product.price}
