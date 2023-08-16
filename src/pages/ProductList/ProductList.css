@@ -8,6 +8,8 @@
 
 .product-list-box {
     flex-basis: 80%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .product-list-box .product-item {

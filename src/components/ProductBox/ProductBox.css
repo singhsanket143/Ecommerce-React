@@ -1,3 +1,13 @@
+.product-item {
+    display: block;
+}
+
 .product-img {
     height: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-img > img {
+    max-height: 70%;
 }
