@@ -24,7 +24,6 @@ function Header(props) {
   const toggle = () => setIsOpen(!isOpen);
   
   useEffect(() => {
-    console.log(token, setToken, removeToken);
   }, [token]);
 
   return (
