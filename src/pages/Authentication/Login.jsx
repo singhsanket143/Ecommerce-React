@@ -1,29 +1,33 @@
 // CSS imports
-import { Link, useNavigate } from 'react-router-dom';
-import Auth from '../../components/Auth/Auth';
 import './Auth.css';
-import axios from 'axios';
-import { sigin } from '../../apis/fakeStoreProdApis';
-import { useRef } from 'react';
+// lubrary imports
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useRef } from 'react';
 import { useCookies } from 'react-cookie';
 import jwt_decode from "jwt-decode";
+import axios from 'axios';
+// component imports
+import Auth from '../../components/Auth/Auth';
+// api imports
+import { sigin } from '../../apis/fakeStoreProdApis';
+// context import
+import UserContext from '../../context/userContext';
 
 function Login() {
 
     const authRef = useRef(null);
     const navigate = useNavigate();
     const [token, setToken] = useCookies(['jwt-token']);
-    
+    const {setUser} = useContext(UserContext);
     async function onAuthFormSubmit(formDetails) {
         try {
             const response = await axios.post(sigin(), {
                 username: formDetails.username,
                 email: formDetails.email,
                 password: formDetails.password
-            }); 
-            console.log(response);
-            const tokenDetails=jwt_decode(response.data.token);
-            console.log(tokenDetails);
+            }, {withCredentials: true}); 
+            const tokenDetails = jwt_decode(response.data.token);
+            setUser({username: tokenDetails.user, id: tokenDetails.id});
             setToken('jwt-token', response.data.token, {httpOnly: true});
             navigate('/');
         } catch (error) {
