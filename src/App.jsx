@@ -11,10 +11,12 @@ import Header from './components/Header/Header'
 import MainRoutes from './routes/MainRoutes'
 // context import
 import UserContext from './context/userContext'
+import CartContext from './context/CartContext';
 
 function App() {
 
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState(null);
   const [token, setToken] = useCookies(['jwt-token']);
 
   function accessToken() {
@@ -28,11 +30,13 @@ function App() {
 
   useEffect(() => {
     accessToken();
-  }, [])
+  }, []);
+
 
   return (
 
     <UserContext.Provider value={{user, setUser}}>
+    <CartContext.Provider value={{cart, setCart}}>
     <div className="app-wrapper">
       {/* Common header for all pages */}
       <Header 
@@ -47,6 +51,7 @@ function App() {
       {/* Common footer for all pages */}
       <Footer />
     </div>
+    </CartContext.Provider>
     </UserContext.Provider>
   )
 }

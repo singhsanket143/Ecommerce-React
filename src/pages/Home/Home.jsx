@@ -3,10 +3,19 @@ import './Home.css';
 
 import CategoryItem from '../../components/CategoryItem/CategoryItem';
 import useCategory from '../../hooks/useCategory';
+import useCart from '../../hooks/useCart';
+import { useContext, useEffect } from 'react';
+import UserContext from '../../context/userContext';
 
 function Home() {
 
     const [categories] = useCategory();
+    const {user} = useContext(UserContext);
+    const [cart] = useCart(user ? user.id : undefined);
+
+    useEffect(() => {
+    }, [user]);
+
     return (
         <div className="container welcome-wrapper">
             <div className="row">
