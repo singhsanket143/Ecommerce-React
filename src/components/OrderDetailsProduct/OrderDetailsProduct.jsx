@@ -1,4 +1,4 @@
-function OrderDetailsProduct({ image, title, price, quantity}) {
+function OrderDetailsProduct({ image, title, price, quantity, onRemove}) {
 
     const quantityAvailable = [1,2,3,4,5,6,7,8,9,10];
 
@@ -21,7 +21,7 @@ function OrderDetailsProduct({ image, title, price, quantity}) {
                             </select>
                         </div>
                     </div>
-                    <button className="order-details-product-remove btn btn-danger">Remove</button>
+                    <button className="order-details-product-remove btn btn-danger" onClick={onRemove}>Remove</button>
                 </div>
             </div>
             <hr />

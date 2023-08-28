@@ -3,11 +3,13 @@ import OrderDetailsProduct from '../../components/OrderDetailsProduct/OrderDetai
 import './Cart.css';
 import CartContext from '../../context/CartContext';
 import axios from 'axios';
-import { getProduct } from '../../apis/fakeStoreProdApis';
+import { getProduct, updateProductInCart } from '../../apis/fakeStoreProdApis';
+import userContext from '../../context/userContext';
 
 function Cart() {
 
-    const {cart} = useContext(CartContext);
+    const {cart, setCart} = useContext(CartContext);
+    const {user} = useContext(userContext);
     const [products, setProducts] = useState([]);
     async function downloadCartProducts(cart) {
         if(!cart || !cart.products) return;
@@ -23,8 +25,13 @@ function Cart() {
         setProducts(downloadedProducts);
     }
 
+    async function onProductUpdate(productId, quantity) {
+        if(!user) return;
+        const response = await axios.put(updateProductInCart(), {userId: user.id, productId, quantity});
+        setCart({...response.data});
+    }
+
     useEffect(() => {
-        console.log(cart);
         downloadCartProducts(cart);
     }, [cart])
 
@@ -41,6 +48,7 @@ function Cart() {
                                                                         image={product.image}
                                                                         price={product.price}
                                                                         quantity={product.quantity}
+                                                                        onRemove={() => onProductUpdate(product.id, 0)}
                                                                         />)}
                                
                     </div>
